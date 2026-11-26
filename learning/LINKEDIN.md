@@ -1,30 +1,19 @@
-# LinkedIn-Post — öffentliches Lernprojekt
+# LinkedIn post — learning project
 
-Aktualisierter Entwurf mit geprüften öffentlichen Links, Stand 26.11.2026. Noch nicht auf LinkedIn veröffentlicht. Der Beitrag beschreibt ein laufendes Lernprojekt, keinen Kursabschluss.
+Draft updated on 26 November 2026. This post describes an ongoing learning project, not a completed course. It has not been published to LinkedIn.
 
 ---
 
-Wie wird aus einer API-Beschreibung eine Dokumentation, mit der Entwickler tatsächlich arbeiten können?
+I’m learning more about API documentation through Tom Johnson’s “Documenting APIs” course, and I wanted something practical to work on.
 
-Im Rahmen meines Selbststudiums mit Tom Johnsons Kurs „Documenting APIs“ arbeite ich an einem Praxisprojekt: der fiktiven TrailNotes API.
+Meet **TrailNotes** — a fictional API and an ongoing learning project with a quickstart, OpenAPI reference and Postman examples.
 
-Die vorbereitete Grundlage verbindet:
+I used AI to prepare the starting point. Now I’m working through the examples, rewriting the docs in my own voice and figuring out what makes them useful to someone seeing the API for the first time.
 
-🔹 einen Quickstart vom ersten Request bis zur erfolgreichen Antwort
-🔹 eine Endpoint-Referenz mit OpenAPI-Vertrag
-🔹 reproduzierbare Postman-Anfragen und Fehlerbeispiele
-🔹 ein Tutorial zur Paginierung
+You can follow the project here:
 
-Mein nächster Schwerpunkt: die Texte eigenständig überarbeiten, Beispiele persönlich nachvollziehen und die Dokumentation mit einer zweiten Person testen.
+https://fabianbrue.github.io/trailnotes-api-docs/
 
-Das Projektgerüst wurde mit KI-Unterstützung erstellt. In der begleitenden Fallstudie werde ich meine eigenen Beiträge, Prüfungen und Überarbeitungen transparent dokumentieren.
+What’s one thing you wish more API docs explained clearly?
 
-👉 Zum Lernprojekt: https://fabianbrue.github.io/trailnotes-api-docs/
-
-💻 Repository: https://github.com/fabianbrue/trailnotes-api-docs
-
-📚 Zum Kurs: https://idratherbewriting.com/learnapidoc/
-
-Welche Information fehlt euch in API-Dokumentationen am häufigsten, wenn ihr eine Schnittstelle zum ersten Mal verwendet?
-
-#APIDocumentation #TechnicalWriting #DocsAsCode
+#APIDocumentation #TechnicalWriting #LearningInPublic
