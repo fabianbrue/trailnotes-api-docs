@@ -1,0 +1,203 @@
+{
+  "info": {
+    "name": "TrailNotes API — portfolio",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": "Fictional local API. Start the Node server and select the local demo environment. Negative requests deliberately expect error status codes. The key is a public demo value."
+  },
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Demo-Key",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{demo_key}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "item": [
+    {
+      "name": "01 Health",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/health",
+        "description": "Local fictional fixture. Expected HTTP status: 200.",
+        "auth": {
+          "type": "noauth"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Expected HTTP 200', () => pm.response.to.have.status(200));",
+              "pm.test('JSON response', () => pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json'));",
+              "pm.test('Synthetic service is available', () => pm.expect(pm.response.json().synthetic).to.eql(true));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "02 List trails",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/v1/trails?limit=2",
+        "description": "Local fictional fixture. Expected HTTP status: 200."
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Expected HTTP 200', () => pm.response.to.have.status(200));",
+              "pm.test('JSON response', () => pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json'));",
+              "pm.test('First page', () => { const p = pm.response.json(); pm.expect(p.items).to.have.lengthOf(2); pm.expect(p.total).to.eql(3); pm.expect(p.next_offset).to.eql(2); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "03 Filter easy trails",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/v1/trails?difficulty=easy",
+        "description": "Local fictional fixture. Expected HTTP status: 200."
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Expected HTTP 200', () => pm.response.to.have.status(200));",
+              "pm.test('JSON response', () => pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json'));",
+              "pm.test('Only easy trails', () => { const p = pm.response.json(); pm.expect(p.total).to.eql(1); pm.expect(p.items.every(t => t.difficulty === 'easy')).to.eql(true); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "04 Next page",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/v1/trails?limit=2&offset=2",
+        "description": "Local fictional fixture. Expected HTTP status: 200."
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Expected HTTP 200', () => pm.response.to.have.status(200));",
+              "pm.test('JSON response', () => pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json'));",
+              "pm.test('Pagination ends', () => { const p = pm.response.json(); pm.expect(p.items).to.have.lengthOf(1); pm.expect(p.next_offset).to.eql(null); });"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "05 Trail detail",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/v1/trails/pine-loop",
+        "description": "Local fictional fixture. Expected HTTP status: 200."
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Expected HTTP 200', () => pm.response.to.have.status(200));",
+              "pm.test('JSON response', () => pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json'));",
+              "pm.test('Correct trail', () => pm.expect(pm.response.json().id).to.eql('pine-loop'));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "06 Missing key",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/v1/trails",
+        "description": "Local fictional fixture. Expected HTTP status: 401.",
+        "auth": {
+          "type": "noauth"
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Expected HTTP 401', () => pm.response.to.have.status(401));",
+              "pm.test('JSON response', () => pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json'));",
+              "pm.test('Authentication error', () => pm.expect(pm.response.json().error.code).to.eql('UNAUTHORIZED'));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "07 Invalid limit",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/v1/trails?limit=0",
+        "description": "Local fictional fixture. Expected HTTP status: 400."
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Expected HTTP 400', () => pm.response.to.have.status(400));",
+              "pm.test('JSON response', () => pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json'));",
+              "pm.test('Invalid query', () => pm.expect(pm.response.json().error.code).to.eql('INVALID_QUERY'));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "08 Unknown trail",
+      "request": {
+        "method": "GET",
+        "url": "{{base_url}}/v1/trails/unknown-trail",
+        "description": "Local fictional fixture. Expected HTTP status: 404."
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('Expected HTTP 404', () => pm.response.to.have.status(404));",
+              "pm.test('JSON response', () => pm.expect(pm.response.headers.get('Content-Type')).to.include('application/json'));",
+              "pm.test('Unknown trail', () => pm.expect(pm.response.json().error.code).to.eql('TRAIL_NOT_FOUND'));"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

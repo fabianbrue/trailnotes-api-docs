@@ -1,0 +1,15 @@
+{
+  "name": "TrailNotes API",
+  "description": "A fictional hiking API. A practical developer documentation learning project.",
+  "status": "learning-scaffold",
+  "pages": [
+    { "file": "index.md", "label": "Overview" },
+    { "file": "quickstart.md", "label": "Quickstart" },
+    { "file": "authentication.md", "label": "Authentication" },
+    { "file": "reference.md", "label": "API reference" },
+    { "file": "errors.md", "label": "Errors" },
+    { "file": "tutorial.md", "label": "Pagination tutorial" },
+    { "file": "verification.md", "label": "Verification" },
+    { "file": "case-study.md", "label": "Case study" }
+  ]
+}

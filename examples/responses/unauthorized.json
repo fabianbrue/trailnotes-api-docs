@@ -1,0 +1,6 @@
+{
+  "error": {
+    "code": "UNAUTHORIZED",
+    "message": "Provide the public X-Demo-Key value: trailnotes-demo."
+  }
+}

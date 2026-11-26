@@ -1,0 +1,24 @@
+name: Documentation improvement
+description: Record an observed reader problem and a verifiable documentation change.
+body:
+  - type: textarea
+    id: task
+    attributes:
+      label: Reader task and observed problem
+      description: What was the reader trying to do? What evidence shows the problem?
+    validations:
+      required: true
+  - type: textarea
+    id: change
+    attributes:
+      label: Proposed documentation change
+      description: Identify the pages, examples or contract elements involved.
+    validations:
+      required: true
+  - type: textarea
+    id: verification
+    attributes:
+      label: How to verify
+      description: Give reproducible steps and the expected reader outcome.
+    validations:
+      required: true

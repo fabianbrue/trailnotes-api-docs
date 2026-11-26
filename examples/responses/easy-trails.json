@@ -1,0 +1,16 @@
+{
+  "items": [
+    {
+      "id": "pine-loop",
+      "name": "Pine Loop",
+      "difficulty": "easy",
+      "distance_km": 4.2,
+      "ascent_m": 90,
+      "description": "A fictional loop through a quiet pine forest."
+    }
+  ],
+  "total": 1,
+  "limit": 2,
+  "offset": 0,
+  "next_offset": null
+}

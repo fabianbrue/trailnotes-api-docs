@@ -1,0 +1,512 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "TrailNotes API",
+    "version": "0.1.0",
+    "description": "Fictional, read-only local hiking API. All data is synthetic. The fixed demo key is public and is not production authentication.",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/license/mit/"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://127.0.0.1:4010",
+      "description": "Local demo only. GitHub Pages does not host this API."
+    }
+  ],
+  "tags": [
+    {
+      "name": "System",
+      "description": "Local demo availability."
+    },
+    {
+      "name": "Trails",
+      "description": "Synthetic trail fixtures."
+    }
+  ],
+  "security": [
+    {
+      "DemoKey": []
+    }
+  ],
+  "paths": {
+    "/health": {
+      "get": {
+        "operationId": "getHealth",
+        "tags": [
+          "System"
+        ],
+        "summary": "Check local demo availability",
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "The server is running.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Health"
+                },
+                "example": {
+                  "status": "ok",
+                  "api": "TrailNotes",
+                  "version": "0.1.0",
+                  "synthetic": true
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Only GET is supported.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "error": {
+                    "code": "METHOD_NOT_ALLOWED",
+                    "message": "This demo accepts GET requests only."
+                  }
+                }
+              }
+            },
+            "headers": {
+              "Allow": {
+                "description": "Supported method.",
+                "schema": {
+                  "type": "string",
+                  "example": "GET"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/trails": {
+      "get": {
+        "operationId": "listTrails",
+        "tags": [
+          "Trails"
+        ],
+        "summary": "List and filter trails",
+        "description": "Filtering happens before offset pagination. Items stay in fixture order. Unknown or repeated query parameters are rejected. An offset beyond the matching data returns an empty page. All query parameters use single values.",
+        "parameters": [
+          {
+            "name": "difficulty",
+            "in": "query",
+            "required": false,
+            "description": "Case-sensitive difficulty. Omit to include every difficulty.",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "easy",
+                "moderate",
+                "hard"
+              ]
+            },
+            "example": "easy"
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "description": "Maximum number of trails on this page.",
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 3,
+              "default": 2
+            },
+            "example": 2
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "required": false,
+            "description": "Number of matching trails to skip.",
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 1000,
+              "default": 0
+            },
+            "example": 0
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A page of matching trails.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TrailPage"
+                },
+                "example": {
+                  "items": [
+                    {
+                      "id": "pine-loop",
+                      "name": "Pine Loop",
+                      "difficulty": "easy",
+                      "distance_km": 4.2,
+                      "ascent_m": 90,
+                      "description": "A fictional loop through a quiet pine forest."
+                    },
+                    {
+                      "id": "ridge-path",
+                      "name": "Ridge Path",
+                      "difficulty": "moderate",
+                      "distance_km": 9.5,
+                      "ascent_m": 420,
+                      "description": "A fictional ridge walk with a steady ascent."
+                    }
+                  ],
+                  "total": 3,
+                  "limit": 2,
+                  "offset": 0,
+                  "next_offset": 2
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid or unsupported query parameters.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "error": {
+                    "code": "INVALID_QUERY",
+                    "message": "Check difficulty, limit (1-3) and offset (0-1000)."
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "The public demo header is missing or incorrect.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "error": {
+                    "code": "UNAUTHORIZED",
+                    "message": "Provide the public X-Demo-Key value: trailnotes-demo."
+                  }
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Only GET is supported.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "error": {
+                    "code": "METHOD_NOT_ALLOWED",
+                    "message": "This demo accepts GET requests only."
+                  }
+                }
+              }
+            },
+            "headers": {
+              "Allow": {
+                "description": "Supported method.",
+                "schema": {
+                  "type": "string",
+                  "example": "GET"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/trails/{trailId}": {
+      "get": {
+        "operationId": "getTrail",
+        "tags": [
+          "Trails"
+        ],
+        "summary": "Get one trail",
+        "description": "Use an id from a list response. Query parameters are not accepted. After authentication, an unknown trail returns 404 even if query parameters are present.",
+        "parameters": [
+          {
+            "name": "trailId",
+            "in": "path",
+            "required": true,
+            "description": "Stable fixture identifier.",
+            "schema": {
+              "type": "string",
+              "pattern": "^[a-z0-9-]+$"
+            },
+            "example": "pine-loop"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The requested trail.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Trail"
+                },
+                "example": {
+                  "id": "pine-loop",
+                  "name": "Pine Loop",
+                  "difficulty": "easy",
+                  "distance_km": 4.2,
+                  "ascent_m": 90,
+                  "description": "A fictional loop through a quiet pine forest."
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid or unsupported query parameters.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "error": {
+                    "code": "INVALID_QUERY",
+                    "message": "Check difficulty, limit (1-3) and offset (0-1000)."
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "The public demo header is missing or incorrect.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "error": {
+                    "code": "UNAUTHORIZED",
+                    "message": "Provide the public X-Demo-Key value: trailnotes-demo."
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No trail has this identifier.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "error": {
+                    "code": "TRAIL_NOT_FOUND",
+                    "message": "No trail matches this id."
+                  }
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "Only GET is supported.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                },
+                "example": {
+                  "error": {
+                    "code": "METHOD_NOT_ALLOWED",
+                    "message": "This demo accepts GET requests only."
+                  }
+                }
+              }
+            },
+            "headers": {
+              "Allow": {
+                "description": "Supported method.",
+                "schema": {
+                  "type": "string",
+                  "example": "GET"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "DemoKey": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-Demo-Key",
+        "description": "Public sample value: trailnotes-demo. No registration or real secret is required."
+      }
+    },
+    "schemas": {
+      "Health": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "status",
+          "api",
+          "version",
+          "synthetic"
+        ],
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "ok"
+            ]
+          },
+          "api": {
+            "type": "string",
+            "example": "TrailNotes"
+          },
+          "version": {
+            "type": "string",
+            "example": "0.1.0"
+          },
+          "synthetic": {
+            "type": "boolean",
+            "enum": [
+              true
+            ]
+          }
+        }
+      },
+      "Trail": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "name",
+          "difficulty",
+          "distance_km",
+          "ascent_m",
+          "description"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9-]+$",
+            "example": "pine-loop"
+          },
+          "name": {
+            "type": "string",
+            "example": "Pine Loop"
+          },
+          "difficulty": {
+            "type": "string",
+            "enum": [
+              "easy",
+              "moderate",
+              "hard"
+            ]
+          },
+          "distance_km": {
+            "type": "number",
+            "minimum": 0,
+            "description": "Distance in kilometres.",
+            "example": 4.2
+          },
+          "ascent_m": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Ascent in metres.",
+            "example": 90
+          },
+          "description": {
+            "type": "string",
+            "example": "A fictional loop through a quiet pine forest."
+          }
+        }
+      },
+      "TrailPage": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "items",
+          "total",
+          "limit",
+          "offset",
+          "next_offset"
+        ],
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Trail"
+            }
+          },
+          "total": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 3
+          },
+          "offset": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 1000
+          },
+          "next_offset": {
+            "type": "integer",
+            "nullable": true,
+            "minimum": 0,
+            "description": "Next matching offset, or null when pagination is complete."
+          }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "error"
+        ],
+        "properties": {
+          "error": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "code",
+              "message"
+            ],
+            "properties": {
+              "code": {
+                "type": "string",
+                "enum": [
+                  "INVALID_QUERY",
+                  "UNAUTHORIZED",
+                  "TRAIL_NOT_FOUND",
+                  "NOT_FOUND",
+                  "METHOD_NOT_ALLOWED"
+                ]
+              },
+              "message": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

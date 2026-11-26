@@ -1,0 +1,24 @@
+{
+  "items": [
+    {
+      "id": "pine-loop",
+      "name": "Pine Loop",
+      "difficulty": "easy",
+      "distance_km": 4.2,
+      "ascent_m": 90,
+      "description": "A fictional loop through a quiet pine forest."
+    },
+    {
+      "id": "ridge-path",
+      "name": "Ridge Path",
+      "difficulty": "moderate",
+      "distance_km": 9.5,
+      "ascent_m": 420,
+      "description": "A fictional ridge walk with a steady ascent."
+    }
+  ],
+  "total": 3,
+  "limit": 2,
+  "offset": 0,
+  "next_offset": 2
+}

@@ -1,0 +1,14 @@
+{
+  "name": "trailnotes-api-docs-portfolio",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A fictional hiking API and documentation learning project",
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "start": "node src/server.mjs",
+    "test": "node --test",
+    "check": "node scripts/check.mjs",
+    "build": "pwsh -NoProfile -File scripts/build-docs.ps1"
+  }
+}
