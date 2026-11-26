@@ -17,6 +17,17 @@ The restricted execution sandbox could not connect to its own loopback test serv
 
 ## Still to be done by the learner
 
-The [milestones](learning/MILESTONES.md), personal Postman collection run, complete OpenAPI standards validation in Swagger Editor, fresh-reader review, final case study and publication remain open. Prepared CI and Pages workflows have not yet run on GitHub. No repository or website has been published.
+The [milestones](learning/MILESTONES.md), personal Postman collection run, complete OpenAPI standards validation in Swagger Editor, fresh-reader review and final case study remain open.
+
+## Learning-project publication
+
+Published on 26 November 2026 at the owner's explicit request, with the learning-scaffold status retained:
+
+- [Public repository](https://github.com/fabianbrue/trailnotes-api-docs)
+- [Public documentation](https://fabianbrue.github.io/trailnotes-api-docs/)
+- [Successful initial CI run](https://github.com/fabianbrue/trailnotes-api-docs/actions/runs/45798329808)
+- [Successful initial Pages deployment](https://github.com/fabianbrue/trailnotes-api-docs/actions/runs/45798365836)
+
+Anonymous HTTP 200 responses were verified for the landing page, quickstart, reference, case study, CSS, console script, OpenAPI contract and both Postman downloads. The release-completion check still rejects the unfinished portfolio; the separate publication check permits its clearly labelled learning version. No learning milestone or reader-review evidence was marked complete.
 
 This record describes checks of the starter; it is not a claim of course completion or an independent assessment of the learner's skills.

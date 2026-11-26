@@ -36,3 +36,5 @@ Start the local server, then follow the [quickstart](quickstart.md). You will re
 - [Postman environment](../postman/trailnotes.postman_environment.json)
 
 The editable Markdown pages are the source of truth for the narrative guide. The OpenAPI document describes the machine-readable contract. Both must match the server's observed behaviour.
+
+Browse the [source repository](https://github.com/fabianbrue/trailnotes-api-docs) for the local API, tests and learning milestones. This public site is the learning version; the case study records which work is still pending.

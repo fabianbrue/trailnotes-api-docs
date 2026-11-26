@@ -1,30 +1,30 @@
-# LinkedIn-Vorlage für die fertige Arbeitsprobe
+# LinkedIn-Post — öffentliches Lernprojekt
 
-Erst verwenden, wenn deine Fallstudie und das Projekt tatsächlich fertig sind. Ersetze die Link-Platzhalter durch die veröffentlichten, ausgeloggt erreichbaren Adressen und passe die Aussagen an deine nachweisbaren Beiträge an.
+Aktualisierter Entwurf mit geprüften öffentlichen Links, Stand 26.11.2026. Noch nicht auf LinkedIn veröffentlicht. Der Beitrag beschreibt ein laufendes Lernprojekt, keinen Kursabschluss.
 
-## Projekteintrag
+---
 
-**Titel:** TrailNotes API — Developer Documentation Portfolio
+Wie wird aus einer API-Beschreibung eine Dokumentation, mit der Entwickler tatsächlich arbeiten können?
 
-**Beschreibung nach eigener Überarbeitung:**
+Im Rahmen meines Selbststudiums mit Tom Johnsons Kurs „Documenting APIs“ arbeite ich an einem Praxisprojekt: der fiktiven TrailNotes API.
 
-> Im Rahmen meines Selbststudiums zu API-Dokumentation habe ich eine Entwicklerdokumentation für eine fiktive REST-API erarbeitet. Die Arbeitsprobe umfasst Quickstart, Endpoint-Referenz, OpenAPI-Vertrag, Postman-Anfragen, Fehlerhilfe und ein Pagination-Tutorial. Die Dokumentation habe ich gegen eine lokale Demo-API geprüft und nach einem Review überarbeitet. Die Fallstudie beschreibt meine Beiträge sowie die verwendete KI-Unterstützung.
+Die vorbereitete Grundlage verbindet:
 
-**Links:** veröffentlichte Dokumentation und GitHub-Repository ergänzen.
+🔹 einen Quickstart vom ersten Request bis zur erfolgreichen Antwort
+🔹 eine Endpoint-Referenz mit OpenAPI-Vertrag
+🔹 reproduzierbare Postman-Anfragen und Fehlerbeispiele
+🔹 ein Tutorial zur Paginierung
 
-**Passende Kenntnisse, soweit tatsächlich erworben:** API Documentation, Technical Writing, OpenAPI, REST APIs, Postman, Git, Docs as Code.
+Mein nächster Schwerpunkt: die Texte eigenständig überarbeiten, Beispiele persönlich nachvollziehen und die Dokumentation mit einer zweiten Person testen.
 
-## Beitrag nach Abschluss
+Das Projektgerüst wurde mit KI-Unterstützung erstellt. In der begleitenden Fallstudie werde ich meine eigenen Beiträge, Prüfungen und Überarbeitungen transparent dokumentieren.
 
-> Meine neue Arbeitsprobe zur API-Dokumentation ist online: TrailNotes, eine bewusst kleine, fiktive REST-API mit vollständig synthetischen Daten.
->
-> Mein Schwerpunkt lag darauf, den Weg vom ersten Request zur verlässlichen Nutzung verständlich zu dokumentieren: Voraussetzungen, Header, Parameter, Paginierung und Fehlerbehandlung.
->
-> Im Projekt zeige ich meine eigenen Texte, geprüfte Beispiele und die Änderungen nach einem Review. Die Fallstudie macht transparent, welche Grundlage mit KI vorbereitet wurde und was ich selbst erarbeitet und validiert habe.
->
-> Dokumentation: [LINK EINFÜGEN]
-> Repository: [LINK EINFÜGEN]
->
-> Lernkontext: Tom Johnsons „Documenting APIs“ auf I'd Rather Be Writing.
+👉 Zum Lernprojekt: https://fabianbrue.github.io/trailnotes-api-docs/
 
-Eine Abschluss-, Zertifizierungs- oder Qualitätsbehauptung nur aufnehmen, wenn sie tatsächlich belegt ist. Keine erfundenen Nutzungszahlen oder Zeitersparnisse ergänzen.
+💻 Repository: https://github.com/fabianbrue/trailnotes-api-docs
+
+📚 Zum Kurs: https://idratherbewriting.com/learnapidoc/
+
+Welche Information fehlt euch in API-Dokumentationen am häufigsten, wenn ihr eine Schnittstelle zum ersten Mal verwendet?
+
+#APIDocumentation #TechnicalWriting #DocsAsCode

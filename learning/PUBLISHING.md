@@ -6,6 +6,8 @@ Eine öffentliche Lernversion ist ausdrücklich möglich, während die acht Etap
 
 Der Pages-Workflow heißt **Publish learning project (manual)** und prüft mit `node scripts/check.mjs --publish` die ehrliche Kennzeichnung. Der strengere `--release`-Check bleibt für den späteren Abschluss bestehen.
 
+Seit 26.11.2026 veröffentlicht: [Dokumentation](https://fabianbrue.github.io/trailnotes-api-docs/) · [Repository](https://github.com/fabianbrue/trailnotes-api-docs). CI und erster Pages-Deploymentlauf waren erfolgreich. Für Aktualisierungen das vorhandene Remote verwenden und anschließend den manuellen Pages-Workflow erneut starten.
+
 ## 1. Inhaltliche Freigabe
 
 - [ ] Acht Etappen selbst bearbeitet und in `evidence.json` eingetragen.
@@ -66,7 +68,7 @@ Ersetze `YOUR-USERNAME` durch deinen GitHub-Namen. Nutzername und Remote sind ab
 
 Es wird keine API ins Internet gestellt. Auf der veröffentlichten Seite ist die lokale Anfragekonsole bewusst deaktiviert. Leser starten die Demo anhand des README selbst.
 
-GitHub-Actions-Workflows sind vorbereitet und lokal soweit möglich geprüft, aber vor dem ersten Push noch nicht auf GitHub ausgeführt. Quellen: [GitHub Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site), [Publishing with Actions](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages).
+Die Workflows wurden nach dem ersten Push auf GitHub erfolgreich ausgeführt. Jede spätere Änderung benötigt neue Prüfungen. Quellen: [GitHub Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site), [Publishing with Actions](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages).
 
 ## 4. LinkedIn
 

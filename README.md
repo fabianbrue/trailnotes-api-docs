@@ -2,6 +2,8 @@
 
 **Status: learning scaffold, version 0.1.0. Not yet a completed portfolio submission.**
 
+[Live documentation](https://fabianbrue.github.io/trailnotes-api-docs/) · [Source repository](https://github.com/fabianbrue/trailnotes-api-docs) · [GitHub checks](https://github.com/fabianbrue/trailnotes-api-docs/actions/workflows/check.yml)
+
 TrailNotes is a fictional, read-only hiking API. This repository combines a working local demo with developer documentation, an OpenAPI contract, a Postman collection and repeatable checks.
 
 The intended reader is a developer who wants to list trails and retrieve one trail's details. Every trail and measurement is synthetic. Nothing here is travel guidance or a production service.

@@ -16,7 +16,7 @@ The HTTP suite starts its own loopback server on an available port and closes it
 
 The repository checker resolves local OpenAPI references, checks operation IDs and path parameters, checks Postman artifact structure and verifies relative Markdown links. It is a targeted consistency check, not a complete OpenAPI standards validator. Before release, import `api/openapi.json` into the official Swagger Editor and record the result.
 
-The site check inspects generated local links, including links under a GitHub repository subpath. It does not prove that the GitHub-hosted deployment has succeeded. The prepared workflows need their first real GitHub run after publication.
+The site check inspects generated local links, including links under a GitHub repository subpath. It does not prove that a deployment has succeeded. The first [GitHub check run](https://github.com/fabianbrue/trailnotes-api-docs/actions/runs/45798329808) and [Pages deployment](https://github.com/fabianbrue/trailnotes-api-docs/actions/runs/45798365836) completed successfully on 26 November 2026. The public site and supporting downloads were also retrieved without authentication. Future changes need their own successful checks and deployment.
 
 The project may be published as an explicitly labelled learning scaffold. `node scripts/check.mjs --publish` checks this status and attribution. The separate `--release` check requires the recorded learner work and reader review before presenting the project as a completed portfolio. Neither check is a course certificate.
 
